@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f8f9fa;">
+                    <a class="navbar-brand" href="#" style="color: #6d7018;">ANDMTM Consulting SHOP</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" style="color: #6d7018;">Produit</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" style="color: #6d7018;">Panier(0)</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                 aria-haspopup="true" aria-expanded="false" style="color: #6d7018;">
+                                    Catégorie
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#" style="color: #6d7018;">Action</a>
+                                    <a class="dropdown-item" href="#" style="color: #6d7018;">Another action</a>
+                                    <a class="dropdown-item" href="#" style="color: #6d7018;">Something else here</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="row">
+  <div class="col-md-12">
+      <form class="card card-sm">
+          <div class="card-body row no-gutters align-items-center">
+              <div class="col">
+                  <input type="search" placeholder="Entrez le nom du produit que vous cherchez" name="item-name" 
+                  class="form-control form-control-borderless">
+              </div>
+              <div class="col-auto">
+                  <button type="submit" class="btn btn-success" style="background-color: #6d7018; border-color: #6d7018;">Recherche</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
+<div class="row">
+  {% for product in product_object %}
+  <div class="col-md-3">
+      <div class="card">
+          <img src="{{ product.image }}" alt="" class="card-img-top product-image">
+          <div class="card-body">
+              <div class="card-title">{{ product.title }}</div>
+              <div class="card-text" style="color: #6d7018;">$ {{ product.price }}</div>
+              <a href="{% url 'detail' product.id %}" class="btn btn-warning">Voir les détails</a>
+              <button id="{{ product.id }}" class="btn btn-success" style="background-color: #6d7018; border-color: #6d7018;">Ajouter</button>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-3 offset-md-3">
+      <ul class="pagination">
+          {% if product_object.has_previous %}
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ product_object.previous_page_number }}" style="color: #6d7018;">Précédent</a>
+              </li>
+          {% endif %}
+
+          <li class="page-item active">
+              <a class="page-link" href="?page={{ product_object.number}}" style="background-color: #6d7018; border-color: #6d7018;">
+                {{ product_object.number}}</a>
+          </li>
+
+          {% if product_object.has_next %}
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ product_object.next_page_number }}" style="color: #6d7018;">Suivant</a>
+              </li>
+          {% endif %}
+      </ul>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+     <script type="text/javascript"> <!-- Ce script permet d'ajouter un produit au panier -->
+        console.log("Hello world");
+        if (localStorage.getItem('panier') == null){
+            var panier = {};
+        }else{
+             panier = JSON.parse(localStorage.getItem('panier'));
+        }
+        $(document).on('click', '.ted', function(){
+            console.log("ajouter");
+            var item_id = this.id.toString();
+            console.log(item_id);
+            if (panier[item_id] != undefined){
+                panier[item_id] = panier[item_id] + 1; 
+            }else{
+                panier[item_id] = 1;
+            }
+            console.log(panier);
+            localStorage.setItem('panier', JSON.stringify(panier));
+        });
+
+     </script>
+{% endblock %}
