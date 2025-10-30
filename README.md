@@ -12,22 +12,25 @@ les détails des produits, la connexion des utilisateurs, et plus encore.
 
 1. Clonez le dépôt :
     git clone https://github.com/MohamedLammineNDIONGUE1601/ANDMTM_Consulting.git
+   
     cd ANDMTM_Consulting
 
-2. Créez et activez un environnement virtuel :
+3. Créez et activez un environnement virtuel :
+   
     python -m venv env
+   
     source env/bin/activate  # Sur Windows: env\Scripts\activate
 
-3. Installez les dépendances :
+5. Installez les dépendances :
     pip install -r requirements.txt
 
-4. Appliquez les migrations :
+6. Appliquez les migrations :
     python manage.py migrate
 
-5. Créez un superutilisateur pour accéder à l'interface d'administration :
+7. Créez un superutilisateur pour accéder à l'interface d'administration :
     python manage.py createsuperuser
 
-6. Démarrez le serveur de développement :
+8. Démarrez le serveur de développement :
     python manage.py runserver
 
-7. Accédez à l'application dans votre navigateur à l'adresse 'http://127.0.0.1:8000/'.
+9. Accédez à l'application dans votre navigateur à l'adresse 'http://127.0.0.1:8000/'.
