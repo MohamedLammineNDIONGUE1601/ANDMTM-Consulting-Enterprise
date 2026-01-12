@@ -38,4 +38,7 @@ les détails des produits, la connexion des utilisateurs, et plus encore.
 
 <img width="1903" height="793" alt="image" src="https://github.com/user-attachments/assets/0a4f3c32-58d5-4494-92b8-d870ef761eb0" />
 
+<img width="1837" height="948" alt="image" src="https://github.com/user-attachments/assets/ff33ee74-fccc-46a3-b4fe-d151cd495f5e" />
+
+
 
